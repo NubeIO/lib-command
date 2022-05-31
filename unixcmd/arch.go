@@ -91,7 +91,12 @@ func (inst *UnixCommand) DetectNubeProduct(options ...command.Options) (*NubePro
 	out := &NubeProduct{}
 	res, err := cmd.Builder("cat", "/proc/device-tree/model").RunCommand(options...)
 	if err != nil {
-		return nil, err
+		arch, _ := inst.DetectArch()
+		if arch == nil {
+			return nil, errors.New("unable to check arch type")
+		}
+		out.Name = arch.ArchModel
+		return out, nil
 	}
 	cmdOut := res.Out
 	if strings.Contains(cmdOut, "Raspberry Pi") {
