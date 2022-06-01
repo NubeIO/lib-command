@@ -9,10 +9,11 @@ import (
 )
 
 type Product struct {
-	Type     string `json:"type"`
-	Version  string `json:"version"`
-	Hardware string `json:"hardware"`
-	Arch     string `json:"arch"` //amd64
+	ProductType ProductType `json:"product_type"`
+	Type        string      `json:"type"`
+	Version     string      `json:"version"`
+	Hardware    string      `json:"hardware"`
+	Arch        string      `json:"arch"` //amd64
 }
 
 func Get(fileAndPath ...string) (*Product, error) {

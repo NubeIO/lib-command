@@ -111,6 +111,15 @@ func (inst *UnixCommand) DetectNubeProduct(options ...command.Options) (*NubePro
 	return out, err
 }
 
+func (inst *UnixCommand) CheckRC() error {
+	out, _ := inst.DetectNubeProduct()
+	if out.IsRC {
+	} else {
+		return errors.New("the host product is not type edge-28")
+	}
+	return nil
+}
+
 func (inst *UnixCommand) CheckEdge28() error {
 	out, _ := inst.DetectNubeProduct()
 	if out.IsEdge {
@@ -118,5 +127,4 @@ func (inst *UnixCommand) CheckEdge28() error {
 		return errors.New("the host product is not type edge-28")
 	}
 	return nil
-
 }
