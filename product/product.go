@@ -9,6 +9,7 @@ const (
 	RubixCompute5
 	Edge28
 	Nuc
+	Server
 	AllLinux
 	Mac
 	None
